@@ -48,7 +48,6 @@ Method:			POST
 Auth:			not required
 
 Entities:
-
 Format: js
 +----------------------------------------------------------------+
 {
@@ -62,11 +61,7 @@ RESPONSE
 --------
 
 Answers:
-			201 ("Created"):  User account has been created. The location header contains its URI.
-			400 ("Bad Request"):  The provided data are incomplete or invalid.
-			403 ("Forbidden"):  The service instance does not allow the creation of new user accounts.
-			409 ("Conflict"):  The user account has not been created, because there already exists an account with matching parameters.
-
+			201 ("Created"):  User account has been created. The location header contains its URI.			400 ("Bad Request"):  The provided data are incomplete or invalid.			403 ("Forbidden"):  The service instance does not allow the creation of new user accounts.			409 ("Conflict"):  The user account has not been created, because there already exists an account with matching parameters.
 
 
 1.2 Get user details
@@ -84,15 +79,29 @@ REQUEST
 Method:			GET
 Auth:			required
 
+### Request Query String:
+
+Name: language
+Require: true
+Description: Select output language
+Valid values: 
+    * en
+    * es
+
+Name: information
+Require: false
+Description: Select if you want to get all the info or a summary
+Valid values: 
+    * complete
+    * summary
+
+
 RESPONSE
 --------
 
 Answers:
-			200 ("OK"):  The data set is returned as the response entity.
-			404 ("Not Found"):  There is no user with this user ID.
-
+			200 ("OK"):  The data set is returned as the response entity.			404 ("Not Found"):  There is no user with this user ID.
 Entities:
-The data returned when queried by another user.
 Language: js
 +----------------------------------------------------------------+
 {
@@ -100,7 +109,6 @@ Language: js
 }
 +----------------------------------------------------------------+
 
-The data returned when queried by the user himself.
 Language: js
 +----------------------------------------------------------------+
 {

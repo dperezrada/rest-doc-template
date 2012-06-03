@@ -232,6 +232,8 @@ showstringspaces=false,
 		<xsl:apply-templates select="api:formats" />
 		\subsubsection*{Authentication}
 		<xsl:apply-templates select="api:request/api:authentication" />
+		\subsubsection*{Request Query String}
+		<xsl:apply-templates select="api:request/api:query_string" />
 		\subsubsection*{Request Entities}
 		<xsl:apply-templates select="api:request/api:entities" />
 		\subsubsection*{Responses}
@@ -267,6 +269,31 @@ showstringspaces=false,
 				<xsl:with-param name="code"><xsl:value-of select="@code" /></xsl:with-param>
 			</xsl:call-template>] <xsl:value-of select="." />
 		</xsl:for-each>
+		\end{description}
+	</xsl:template>
+	
+	<xsl:template match="api:query_string">
+		<xsl:choose>
+			<xsl:when test="count(api:parameter) > 0">
+				<xsl:apply-templates />
+			</xsl:when>
+			<xsl:otherwise>n/a</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template match="api:parameter">
+		\begin{description}
+			\item[Name] <xsl:value-of select="api:name" />
+			\item[Require] <xsl:value-of select="api:require" />
+			\item[Description] <xsl:value-of select="api:description" />
+			<xsl:if test="count(api:posible_values/api:posible_value) > 0">
+				\item[Valid Values]  
+				\begin{description}
+				<xsl:for-each select="api:posible_values/api:posible_value">
+					\item <xsl:value-of select="." />
+				</xsl:for-each>
+				\end{description}
+			</xsl:if>
 		\end{description}
 	</xsl:template>
 

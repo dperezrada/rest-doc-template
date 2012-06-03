@@ -53,6 +53,26 @@
 				<request>
 					<method>GET</method>
 					<authentication mandatory="true" />
+					<query_string>
+						<parameter>
+							<name>language</name>
+							<require>true</require>
+							<posible_values>
+								<posible_value>en</posible_value>
+								<posible_value>es</posible_value>
+							</posible_values>
+							<description>Select output language</description>
+						</parameter>
+						<parameter>
+							<name>information</name>
+							<require>false</require>
+							<posible_values>
+								<posible_value>complete</posible_value>
+								<posible_value>summary</posible_value>
+							</posible_values>
+							<description>Select if you want to get all the info or a summary</description>
+						</parameter>
+					</query_string>
 					<entities />
 				</request>
 				<response>

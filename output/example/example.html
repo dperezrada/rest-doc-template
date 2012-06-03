@@ -133,6 +133,9 @@ a{
 	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#333333');
 	
 }
+.query_string_param{
+	margin-bottom: 7px;
+}
 
 
 			</style>
@@ -248,7 +251,8 @@ a{
 <ul>
 <li>application/json</li>
 </ul>
-<h4>Authentication</h4>not required<h4>Request Entities</h4>
+<h4>Authentication</h4>not required<h4>Request Query String</h4>
+<h4>Request Entities</h4>
 						
 							
 <pre class="brush: js">
@@ -285,7 +289,35 @@ a{
 <ul>
 <li>application/json</li>
 </ul>
-<h4>Authentication</h4>required<h4>Request Entities</h4>n/a<h4>Responses</h4>
+<h4>Authentication</h4>required<h4>Request Query String</h4>
+						
+<dl class="query_string_param">
+<dt class="name">Name: </dt>
+<dd>language</dd>
+<dt class="name">Require: </dt>
+<dd>true</dd>
+<dt class="name">Description: </dt>
+<dd>Select output language</dd>
+<dt>Valid values:
+					<dd>en</dd>
+<dd>es</dd>
+</dt>
+</dl>
+						
+<dl class="query_string_param">
+<dt class="name">Name: </dt>
+<dd>information</dd>
+<dt class="name">Require: </dt>
+<dd>false</dd>
+<dt class="name">Description: </dt>
+<dd>Select if you want to get all the info or a summary</dd>
+<dt>Valid values:
+					<dd>complete</dd>
+<dd>summary</dd>
+</dt>
+</dl>
+					
+<h4>Request Entities</h4>n/a<h4>Responses</h4>
 <dl>
 <dt class="statuscode">200 OK</dt>
 <dd>The data set is returned as the response entity.</dd>

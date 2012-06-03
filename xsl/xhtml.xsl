@@ -150,6 +150,9 @@ a{
 	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#333333');
 	
 }
+.query_string_param{
+	margin-bottom: 7px;
+}
 
 
 			</style>
@@ -410,6 +413,9 @@ a{
 		
 		<h4>Authentication</h4>
 		<xsl:apply-templates select="api:request/api:authentication" />
+
+		<h4>Request Query String</h4>
+		<xsl:apply-templates select="api:request/api:query_string" />
 		
 		<h4>Request Entities</h4>
 		<xsl:apply-templates select="api:request/api:entities" />
@@ -426,6 +432,30 @@ a{
 	</xsl:template>	
 	
 
+	<xsl:template match="api:query_string">
+		<xsl:choose>
+			<xsl:when test="count(api:parameter) > 0">
+				<xsl:apply-templates />
+			</xsl:when>
+			<xsl:otherwise>n/a</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	
+	<xsl:template match="api:parameter">
+		<dl class="query_string_param">
+			<dt  class="name">Name: </dt><dd><xsl:value-of select="api:name" /></dd>
+			<dt  class="name">Require: </dt><dd><xsl:value-of select="api:require" /></dd>
+			<dt  class="name">Description: </dt><dd><xsl:value-of select="api:description" /></dd>
+			<xsl:if test="count(api:posible_values/api:posible_value) > 0">
+				<dt>Valid values:
+					<xsl:for-each select="api:posible_values/api:posible_value">
+						<dd><xsl:apply-templates /></dd>
+					</xsl:for-each>
+				</dt>
+			</xsl:if>
+		</dl>
+	</xsl:template>
+
 	<xsl:template match="api:entities">
 		<xsl:choose>
 			<xsl:when test="count(api:entity) > 0">
@@ -433,8 +463,7 @@ a{
 			</xsl:when>
 			<xsl:otherwise>n/a</xsl:otherwise>
 		</xsl:choose>
-	</xsl:template>	
-
+	</xsl:template>
 
 	<xsl:template match="api:entity">
 		<xsl:apply-templates />

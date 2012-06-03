@@ -181,6 +181,21 @@
 			</xsl:when>
 			<xsl:otherwise>not required</xsl:otherwise>
 		</xsl:choose>&cr;
+		<xsl:if test="count(api:query_string/api:parameter) > 0">
+		&cr;<xsl:text>### Request Query String:</xsl:text>&cr;&cr;
+			<xsl:for-each select="api:query_string/api:parameter">
+				<xsl:text>Name: </xsl:text><xsl:value-of select="api:name" />&cr;
+				<xsl:text>Require: </xsl:text><xsl:value-of select="api:require" />&cr;
+				<xsl:text>Description: </xsl:text><xsl:value-of select="api:description" />&cr;
+				<xsl:if test="count(api:posible_values/api:posible_value) > 0">
+					<xsl:text>Valid values: </xsl:text>&cr;
+					<xsl:for-each select="api:posible_values/api:posible_value">
+						<xsl:text>    * </xsl:text><xsl:value-of select="." />&cr;
+					</xsl:for-each>
+				</xsl:if>
+				&cr;
+			</xsl:for-each>
+		</xsl:if>
 		<xsl:if test="count(api:entities/api:entity) > 0">
 		&cr;<xsl:text>Entities:</xsl:text>&cr;
 			<xsl:for-each select="api:entities/api:entity">
